@@ -19,9 +19,10 @@ public class Company {
     ArrayList<Vehicle> vehicles;
     ArrayList<Hostel> hotels;
     
-    public boolean findTravel (String date, String takeoff, String destination) {
+    public double findTravel (String date, String takeoff, String destination) {
         //kll,k
-        return true;
+        if(true) return 1;
+        return -1;
     }
     public void findBooking (String date, String location) {
         
