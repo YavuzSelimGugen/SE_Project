@@ -16,12 +16,12 @@ import javax.persistence.Query;
  *
  * @author YavuzSelim
  */
-public class TestServices {
+public class CompanyServices {
 
     EntityManagerFactory emf;
     EntityManager em;
 
-    public TestServices() {
+    public CompanyServices() {
         emf = Persistence.createEntityManagerFactory("CelebiAgencyPU");
         em = emf.createEntityManager();
     }
@@ -33,8 +33,8 @@ public class TestServices {
         em.getTransaction().begin();
         em.persist(c1);
         em.getTransaction().commit();
-        em.close();
-        emf.close();
+//        em.close();
+//        emf.close();
     }
 
     public List<Company> getCompanies() {
@@ -58,7 +58,7 @@ public class TestServices {
 //        Query qUpdate = em.createQuery("update Personel p set p.adi='Mehmet' where p.personelId=16");
 //        qUpdate.executeUpdate();
 //        em.flush();
-
+        
         Company c = em.find(Company.class, company_id);
 
         em.getTransaction().begin();
