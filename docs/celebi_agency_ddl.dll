@@ -5,52 +5,60 @@
 
 
 
+CREATE TABLE manager (
+    id       INTEGER NOT NULL  PRIMARY KEY GENERATED ALWAYS AS IDENTITY 
+                (START WITH 1, INCREMENT BY 1),
+    username   VARCHAR(50),
+    pass    VARCHAR(50)
+);
+
 CREATE TABLE company (
-    id       INTEGER NOT NULL,
+    id       INTEGER NOT NULL  PRIMARY KEY GENERATED ALWAYS AS IDENTITY 
+                (START WITH 1, INCREMENT BY 1),
     "NAME"   VARCHAR(50),
     point    double
 );
 
-ALTER TABLE company ADD CONSTRAINT company_pk PRIMARY KEY ( id );
 
 CREATE TABLE customer (
-    id            INTEGER NOT NULL,
+    id            INTEGER NOT NULL  PRIMARY KEY GENERATED ALWAYS AS IDENTITY 
+                (START WITH 1, INCREMENT BY 1),
     "NAME"        VARCHAR(50),
     bonus_point   double
 );
 
-ALTER TABLE customer ADD CONSTRAINT customer_pk PRIMARY KEY ( id );
 
 CREATE TABLE hotel (
-    id         INTEGER NOT NULL,
+    id         INTEGER NOT NULL  PRIMARY KEY GENERATED ALWAYS AS IDENTITY 
+                (START WITH 1, INCREMENT BY 1),
     location   VARCHAR(50),
     "NAME"     VARCHAR(50),
     point      INTEGER
 );
 
-ALTER TABLE hotel ADD CONSTRAINT hotel_pk PRIMARY KEY ( id );
 
 CREATE TABLE hotel_capacity (
-    id               INTEGER NOT NULL,
+    id               INTEGER NOT NULL  PRIMARY KEY GENERATED ALWAYS AS IDENTITY 
+                (START WITH 1, INCREMENT BY 1),
     daily_capacity   INTEGER,
     price            INTEGER,
     hotel_id         INTEGER NOT NULL
 );
 
-ALTER TABLE hotel_capacity ADD CONSTRAINT hotel_capacity_pk PRIMARY KEY ( id );
 
 CREATE TABLE hotel_ticket (
-    id          INTEGER NOT NULL,
+    id          INTEGER NOT NULL  PRIMARY KEY GENERATED ALWAYS AS IDENTITY 
+                (START WITH 1, INCREMENT BY 1),
     hotel_id    INTEGER NOT NULL,
     ticket_id   INTEGER NOT NULL,
     check_in    DATE,
     check_out   DATE
 );
 
-ALTER TABLE hotel_ticket ADD CONSTRAINT hotel_ticket_pk PRIMARY KEY ( id );
 
 CREATE TABLE route_ticket (
-    id INTEGER NOT NULL,
+    id INTEGER NOT NULL  PRIMARY KEY GENERATED ALWAYS AS IDENTITY 
+                (START WITH 1, INCREMENT BY 1),
     route_id      INTEGER NOT NULL,
     ticket_id     INTEGER NOT NULL,
     price         double,
@@ -60,19 +68,18 @@ CREATE TABLE route_ticket (
     company_id    INTEGER NOT NULL
 );
 
-ALTER TABLE route_ticket ADD CONSTRAINT route_ticket_pk PRIMARY KEY ( id );
 
 CREATE TABLE ticket (
-    id                      INTEGER NOT NULL,
+    id                      INTEGER NOT NULL  PRIMARY KEY GENERATED ALWAYS AS IDENTITY 
+                (START WITH 1, INCREMENT BY 1),
     payment_type            VARCHAR(50),
     "DATE"                  DATE,
     payment_amount          double,
-    "BONUS_POINT_EARNED "   double,
+    bonus_point_earned      double,
     used_points             double,
     customer_id             INTEGER NOT NULL
 );
 
-ALTER TABLE ticket ADD CONSTRAINT ticket_pk PRIMARY KEY ( id );
 
 
 ALTER TABLE HOTEL_CAPACITY

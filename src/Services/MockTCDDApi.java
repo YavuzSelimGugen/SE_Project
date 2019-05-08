@@ -28,7 +28,7 @@ public class MockTCDDApi {
     public ArrayList<RouteTicket> getRoutes(String from, String to, String date) {
         ArrayList<RouteTicket> routes = new ArrayList<>();
         CompanyServices ts = new CompanyServices();
-        Company c = ts.getCompany(101);
+        Company c = ts.getCompany(1);
         if (to.equals("Istanbul") || to.equals("Ankara") || to.equals("Izmir")) {
             RouteTicket temp = new RouteTicket();
             temp.setTo(to);

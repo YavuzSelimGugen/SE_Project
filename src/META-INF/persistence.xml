@@ -2,15 +2,16 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="CelebiAgencyPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>Entities.HotelTicket</class>
-    <class>Entities.Customer</class>
-    <class>Entities.Hotel</class>
     <class>Entities.RouteTicket</class>
     <class>Entities.Company</class>
     <class>Entities.HotelCapacity</class>
+    <class>Entities.Hotel</class>
+    <class>Entities.HotelTicket</class>
+    <class>Entities.Customer</class>
+    <class>Entities.Manager</class>
     <class>Entities.Ticket</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/celebi_seyahat"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/celebi_agency"/>
       <property name="javax.persistence.jdbc.user" value="celebi"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="javax.persistence.jdbc.password" value="celebi"/>

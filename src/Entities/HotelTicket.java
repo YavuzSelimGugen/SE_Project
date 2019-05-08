@@ -124,7 +124,7 @@ public class HotelTicket implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.HotelTicket[ id=" + id + " ]";
+        return "Entities.HotelTicket[ id=" + id + " ]";
     }
     
 }

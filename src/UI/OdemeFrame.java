@@ -9,7 +9,10 @@ import Entities.Customer;
 import Entities.RouteTicket;
 import Services.CustomerServices;
 import Services.TravelServices;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -224,7 +227,11 @@ public class OdemeFrame extends javax.swing.JFrame {
             
             Customer c = cs.getCustomer(Integer.parseInt(jTable1.getModel().getValueAt(
                     jTable1.getSelectedRow(), 0).toString()));
-            ts.sellTicket(route, c, buttonGroup1.getSelection().getActionCommand());
+            try {
+                ts.sellTicket(route, c, buttonGroup1.getSelection().getActionCommand());
+            } catch (SQLException ex) {
+                Logger.getLogger(OdemeFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton_sellTicketActionPerformed
 

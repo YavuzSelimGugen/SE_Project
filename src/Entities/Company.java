@@ -111,7 +111,7 @@ public class Company implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Company[ id=" + id + " ]";
+        return "Entities.Company[ id=" + id + " ]";
     }
     
 }

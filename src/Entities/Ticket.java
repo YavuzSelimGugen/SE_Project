@@ -57,7 +57,7 @@ public class Ticket implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "PAYMENT_AMOUNT")
     private Double paymentAmount;
-    @Column(name = "BONUS_POINT_EARNED ")
+    @Column(name = "BONUS_POINT_EARNED")
     private Double bonusPointEarned;
     @Column(name = "USED_POINTS")
     private Double usedPoints;
@@ -172,7 +172,7 @@ public class Ticket implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Ticket[ id=" + id + " ]";
+        return "Entities.Ticket[ id=" + id + " ]";
     }
     
 }

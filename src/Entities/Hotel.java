@@ -132,7 +132,7 @@ public class Hotel implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Hotel[ id=" + id + " ]";
+        return "Entities.Hotel[ id=" + id + " ]";
     }
     
 }

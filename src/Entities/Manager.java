@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -24,14 +22,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author YavuzSelim
  */
 @Entity
-@Table(name = "HOTEL_CAPACITY")
+@Table(name = "MANAGER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "HotelCapacity.findAll", query = "SELECT h FROM HotelCapacity h")
-    , @NamedQuery(name = "HotelCapacity.findById", query = "SELECT h FROM HotelCapacity h WHERE h.id = :id")
-    , @NamedQuery(name = "HotelCapacity.findByDailyCapacity", query = "SELECT h FROM HotelCapacity h WHERE h.dailyCapacity = :dailyCapacity")
-    , @NamedQuery(name = "HotelCapacity.findByPrice", query = "SELECT h FROM HotelCapacity h WHERE h.price = :price")})
-public class HotelCapacity implements Serializable {
+    @NamedQuery(name = "Manager.findAll", query = "SELECT m FROM Manager m")
+    , @NamedQuery(name = "Manager.findById", query = "SELECT m FROM Manager m WHERE m.id = :id")
+    , @NamedQuery(name = "Manager.findByUsername", query = "SELECT m FROM Manager m WHERE m.username = :username")
+    , @NamedQuery(name = "Manager.findByPass", query = "SELECT m FROM Manager m WHERE m.pass = :pass")})
+public class Manager implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,18 +37,15 @@ public class HotelCapacity implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Column(name = "DAILY_CAPACITY")
-    private Integer dailyCapacity;
-    @Column(name = "PRICE")
-    private Integer price;
-    @JoinColumn(name = "HOTEL_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Hotel hotelId;
+    @Column(name = "USERNAME")
+    private String username;
+    @Column(name = "PASS")
+    private String pass;
 
-    public HotelCapacity() {
+    public Manager() {
     }
 
-    public HotelCapacity(Integer id) {
+    public Manager(Integer id) {
         this.id = id;
     }
 
@@ -62,28 +57,20 @@ public class HotelCapacity implements Serializable {
         this.id = id;
     }
 
-    public Integer getDailyCapacity() {
-        return dailyCapacity;
+    public String getUsername() {
+        return username;
     }
 
-    public void setDailyCapacity(Integer dailyCapacity) {
-        this.dailyCapacity = dailyCapacity;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public Integer getPrice() {
-        return price;
+    public String getPass() {
+        return pass;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public Hotel getHotelId() {
-        return hotelId;
-    }
-
-    public void setHotelId(Hotel hotelId) {
-        this.hotelId = hotelId;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     @Override
@@ -96,10 +83,10 @@ public class HotelCapacity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof HotelCapacity)) {
+        if (!(object instanceof Manager)) {
             return false;
         }
-        HotelCapacity other = (HotelCapacity) object;
+        Manager other = (Manager) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -108,7 +95,7 @@ public class HotelCapacity implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.HotelCapacity[ id=" + id + " ]";
+        return "Entities.Manager[ id=" + id + " ]";
     }
     
 }

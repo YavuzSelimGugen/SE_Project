@@ -163,7 +163,7 @@ public class RouteTicket implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.RouteTicket[ id=" + id + " ]";
+        return "Entities.RouteTicket[ id=" + id + " ]";
     }
     
 }
