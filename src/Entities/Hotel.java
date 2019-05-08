@@ -6,9 +6,7 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -46,12 +42,9 @@ public class Hotel implements Serializable {
     private String location;
     @Column(name = "NAME")
     private String name;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "POINT")
-    private Integer point;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotelId")
-    private Collection<HotelCapacity> hotelCapacityCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotelId")
-    private Collection<HotelTicket> hotelTicketCollection;
+    private Double point;
 
     public Hotel() {
     }
@@ -84,30 +77,12 @@ public class Hotel implements Serializable {
         this.name = name;
     }
 
-    public Integer getPoint() {
+    public Double getPoint() {
         return point;
     }
 
-    public void setPoint(Integer point) {
+    public void setPoint(Double point) {
         this.point = point;
-    }
-
-    @XmlTransient
-    public Collection<HotelCapacity> getHotelCapacityCollection() {
-        return hotelCapacityCollection;
-    }
-
-    public void setHotelCapacityCollection(Collection<HotelCapacity> hotelCapacityCollection) {
-        this.hotelCapacityCollection = hotelCapacityCollection;
-    }
-
-    @XmlTransient
-    public Collection<HotelTicket> getHotelTicketCollection() {
-        return hotelTicketCollection;
-    }
-
-    public void setHotelTicketCollection(Collection<HotelTicket> hotelTicketCollection) {
-        this.hotelTicketCollection = hotelTicketCollection;
     }
 
     @Override

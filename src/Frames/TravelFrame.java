@@ -3,27 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI;
+package Frames;
 
 import Entities.RouteTicket;
 import Services.TravelServices;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author YavuzSelim
  */
-public class MainFrame extends javax.swing.JFrame {
+public class TravelFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form MainFrame
+     * Creates new form TravelFrame
      */
     TravelServices travelservicer;
     DefaultTableModel tm;
     ArrayList<RouteTicket> queryRoute;
-    public MainFrame() {
+    public TravelFrame() {
         initComponents();
         jButton_accept.setEnabled(false);
         tm = new DefaultTableModel();
@@ -52,21 +51,22 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_routes = new javax.swing.JTable();
         jButton_accept = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Sorgula");
+        jButton1.setText("Querry");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jComboBox_from.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Istanbul", "Ankara", "Izmir" }));
+        jComboBox_from.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Istanbul", "Ankara", "Izmir", "Bursa", "Trabzon" }));
 
-        jComboBox_to.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ankara", "Izmir", "Istanbul" }));
+        jComboBox_to.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ankara", "Izmir", "Istanbul", "Bursa", "Trabzon" }));
 
-        jComboBox_company.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TCDD", "THY", "Ucan Turk" }));
+        jComboBox_company.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TCDD", "YTUR", "Ucan Turk" }));
 
         jTextField_date.setText("2019-02-02");
 
@@ -103,10 +103,17 @@ public class MainFrame extends javax.swing.JFrame {
             jTable_routes.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jButton_accept.setText("Onayla");
+        jButton_accept.setText("Approve");
         jButton_accept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_acceptActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -128,12 +135,15 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
                             .addComponent(jComboBox_company, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(414, 414, 414)
                                 .addComponent(jButton_accept))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -156,7 +166,9 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_accept)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -189,9 +201,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton_acceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_acceptActionPerformed
         // TODO add your handling code here:
         RouteTicket selection = queryRoute.get(jTable_routes.getSelectedRow());
-        OdemeFrame odemeframe = new OdemeFrame(selection);
+        TravelPaymentFrame odemeframe = new TravelPaymentFrame(selection);
         odemeframe.setVisible(true);
     }//GEN-LAST:event_jButton_acceptActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,26 +227,28 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TravelFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TravelFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TravelFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TravelFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                new TravelFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton_accept;
     private javax.swing.JComboBox<String> jComboBox_company;
     private javax.swing.JComboBox<String> jComboBox_from;

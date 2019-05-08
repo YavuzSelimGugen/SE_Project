@@ -5,11 +5,9 @@
  */
 package Services;
 
-import Entities.Company;
 import Entities.Customer;
 import Entities.RouteTicket;
 import Entities.Ticket;
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -41,6 +39,12 @@ public class TravelServices {
         RouteTicket rt = new RouteTicket();
         if (company.equals("TCDD")) {
             MockTCDDApi api = new MockTCDDApi();
+            return api.getRoutes(from, to, date);
+        } else if(company.equals("Ucan Turk")) {
+            MockUcanTurkApi api = new MockUcanTurkApi();
+            return api.getRoutes(from, to, date);
+        } else if (company.equals("YTUR")) {
+            MockYTURApi api = new MockYTURApi();
             return api.getRoutes(from, to, date);
         }
         return null;

@@ -22,11 +22,11 @@ public class CompanyServices {
     EntityManager em;
 
     public CompanyServices() {
-        emf = Persistence.createEntityManagerFactory("CelebiAgencyPU");
-        em = emf.createEntityManager();
     }
 
     public void createCompany(String name, double point) {
+        emf = Persistence.createEntityManagerFactory("CelebiAgencyPU");
+        em = emf.createEntityManager();
         Company c1 = new Company();
         c1.setName(name);
         c1.setPoint(point);
@@ -38,6 +38,8 @@ public class CompanyServices {
     }
 
     public List<Company> getCompanies() {
+        emf = Persistence.createEntityManagerFactory("CelebiAgencyPU");
+        em = emf.createEntityManager();
         Query q = em.createQuery("select c from Company c");
         List<Company> companies = q.getResultList();
         em.close();
@@ -46,6 +48,8 @@ public class CompanyServices {
     }
 
     public Company getCompany(int company_id) {
+        emf = Persistence.createEntityManagerFactory("CelebiAgencyPU");
+        em = emf.createEntityManager();
         Query q = em.createQuery("select c from Company c where c.id =:pid");
         q.setParameter("pid", company_id);
         Company company = (Company) q.getSingleResult();
@@ -58,7 +62,8 @@ public class CompanyServices {
 //        Query qUpdate = em.createQuery("update Personel p set p.adi='Mehmet' where p.personelId=16");
 //        qUpdate.executeUpdate();
 //        em.flush();
-        
+        emf = Persistence.createEntityManagerFactory("CelebiAgencyPU");
+        em = emf.createEntityManager();
         Company c = em.find(Company.class, company_id);
 
         em.getTransaction().begin();
@@ -70,6 +75,8 @@ public class CompanyServices {
     }
 
     public void deleteCompany(int company_id) {
+        emf = Persistence.createEntityManagerFactory("CelebiAgencyPU");
+        em = emf.createEntityManager();
         Query q=em.createQuery("delete from Company c where c.id=:pId");
         q.setParameter("pId", company_id);
         em.getTransaction().begin();

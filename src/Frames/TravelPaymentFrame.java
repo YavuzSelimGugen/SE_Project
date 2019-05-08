@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI;
+package Frames;
 
 import Entities.Customer;
 import Entities.RouteTicket;
+import Entities.Ticket;
 import Services.CustomerServices;
 import Services.TravelServices;
 import java.sql.SQLException;
@@ -21,16 +22,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author YavuzSelim
  */
-public class OdemeFrame extends javax.swing.JFrame {
+public class TravelPaymentFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form OdemeFrame
+     * Creates new form TravelPaymentFrame
      */
     TravelServices ts;
     CustomerServices cs;
     DefaultTableModel dtm;
     RouteTicket route;
-    public OdemeFrame(RouteTicket r) {
+
+    public TravelPaymentFrame(RouteTicket r) {
         initComponents();
         ts = new TravelServices();
         cs = new CustomerServices();
@@ -45,9 +47,14 @@ public class OdemeFrame extends javax.swing.JFrame {
         jRadioButton1.setActionCommand("Kredi Karti");
         jRadioButton2.setActionCommand("Cek");
         jRadioButton3.setActionCommand("Nakit");
+
+        jLabel1.setText(r.getFrom());
+        jLabel3.setText(r.getTo());
+        jLabel4.setText(r.getTravelDate().toString());
+        jLabel5.setText(r.getPrice() + "₺");
     }
 
-    private OdemeFrame() {
+    private TravelPaymentFrame() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -72,6 +79,12 @@ public class OdemeFrame extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
         jButton_sellTicket = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,7 +94,7 @@ public class OdemeFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton_queryCustomer.setText("Musteri Sorgula");
+        jButton_queryCustomer.setText("Querry Customer");
         jButton_queryCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_queryCustomerActionPerformed(evt);
@@ -105,7 +118,7 @@ public class OdemeFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 255));
         jLabel2.setText("Musteri bulunamadi.");
 
-        jButton_addCustomer.setText("Musteri Ekle");
+        jButton_addCustomer.setText("Customer Register");
         jButton_addCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_addCustomerActionPerformed(evt);
@@ -113,15 +126,15 @@ public class OdemeFrame extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Kredi Karti");
+        jRadioButton1.setText("Credit Card");
 
         buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Cek");
+        jRadioButton2.setText("Cheque");
 
         buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Nakit");
+        jRadioButton3.setText("Cash");
 
-        jButton_sellTicket.setText("Bileti Kes");
+        jButton_sellTicket.setText("Sell Ticket");
         jButton_sellTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_sellTicketActionPerformed(evt);
@@ -130,6 +143,16 @@ public class OdemeFrame extends javax.swing.JFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jLabel1.setText("jLabel1");
+
+        jLabel3.setText("jLabel3");
+
+        jLabel4.setText("jLabel4");
+
+        jLabel5.setText("jLabel5");
+
+        jLabel6.setText("Pay by:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,26 +160,45 @@ public class OdemeFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jTextField_CustomerQuery, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton_queryCustomer)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jButton_queryCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jButton_addCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton_addCustomer))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton_sellTicket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(134, 134, 134)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_sellTicket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jRadioButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jRadioButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jSeparator2)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +206,26 @@ public class OdemeFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 2, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton1)
+                            .addComponent(jRadioButton2)
+                            .addComponent(jRadioButton3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_sellTicket))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 7, Short.MAX_VALUE)
                         .addComponent(jTextField_CustomerQuery, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -176,15 +237,6 @@ public class OdemeFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton_sellTicket)
-                .addGap(69, 69, 69))
         );
 
         pack();
@@ -197,7 +249,7 @@ public class OdemeFrame extends javax.swing.JFrame {
     private void jButton_queryCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_queryCustomerActionPerformed
         // TODO add your handling code here:
         jLabel2.setVisible(false);
-        
+
         List<Customer> customers = cs.getCustomers(jTextField_CustomerQuery.getText());
         if (customers.size() > 0) {
             for (Customer c : customers) {
@@ -215,22 +267,27 @@ public class OdemeFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         AddCustomerFrame acf = new AddCustomerFrame();
         acf.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton_addCustomerActionPerformed
 
     private void jButton_sellTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_sellTicketActionPerformed
         // TODO add your handling code here:
-        if(jTable1.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, 
-                "Lutfen tablodan bir musteri seciniz!", "Musteri Secimi", JOptionPane.ERROR_MESSAGE);
+        if (jTable1.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null,
+                    "Lutfen tablodan bir musteri seciniz!", "Musteri Secimi", JOptionPane.ERROR_MESSAGE);
         } else {
-            
+
             Customer c = cs.getCustomer(Integer.parseInt(jTable1.getModel().getValueAt(
                     jTable1.getSelectedRow(), 0).toString()));
             try {
-                ts.sellTicket(route, c, buttonGroup1.getSelection().getActionCommand());
+                Ticket t = ts.sellTicket(route, c, buttonGroup1.getSelection().getActionCommand());
+                if (t != null) {
+                    JOptionPane.showMessageDialog(null,
+                            "Basarili", "Bilet kesildi.", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                }
             } catch (SQLException ex) {
-                Logger.getLogger(OdemeFrame.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TravelPaymentFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jButton_sellTicketActionPerformed
@@ -252,20 +309,21 @@ public class OdemeFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OdemeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TravelPaymentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OdemeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TravelPaymentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OdemeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TravelPaymentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OdemeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TravelPaymentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OdemeFrame().setVisible(true);
+                new TravelPaymentFrame().setVisible(true);
             }
         });
     }
@@ -275,12 +333,18 @@ public class OdemeFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton_addCustomer;
     private javax.swing.JButton jButton_queryCustomer;
     private javax.swing.JButton jButton_sellTicket;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField_CustomerQuery;
     // End of variables declaration//GEN-END:variables

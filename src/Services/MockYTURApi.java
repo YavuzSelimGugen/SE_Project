@@ -15,26 +15,20 @@ import java.util.ArrayList;
  *
  * @author YavuzSelim
  */
-public class MockTCDDApi implements TravelApi{
-    public Ticket bookRoute(RouteTicket r) {
-        // TCDD ile konusarak bilet kesilir.
-        // Random urettir.
-//        Ticket t = new Ticket();
-//        r.get
-//        t.set
-        return new Ticket();
-    }
-    
+public class MockYTURApi implements TravelApi{
+
+    @Override
     public ArrayList<RouteTicket> getRoutes(String from, String to, String date) {
         ArrayList<RouteTicket> routes = new ArrayList<>();
         CompanyServices ts = new CompanyServices();
-        Company c = ts.getCompany(1);
-        if (to.equals("Istanbul") || to.equals("Ankara") || to.equals("Izmir")) {
+        Company c = ts.getCompany(2);
+        if (to.equals("Bursa") || to.equals("Trabzon") || to.equals("Izmir")
+                || to.equals("Ankara") || to.equals("Istanbul")) {
             RouteTicket temp = new RouteTicket();
             temp.setTo(to);
             temp.setFrom(from);
             temp.setTravelDate(Date.valueOf(date));
-            temp.setPrice(100.0);
+            temp.setPrice(150.0);
             temp.setCompanyId(c);
             
             routes.add(temp);
@@ -42,10 +36,16 @@ public class MockTCDDApi implements TravelApi{
             temp2.setTo(to);
             temp2.setFrom(from);
             temp2.setTravelDate(Date.valueOf(date));
-            temp2.setPrice(125.0);
+            temp2.setPrice(200.0);
             temp2.setCompanyId(c);
             routes.add(temp2);
         }
         return routes;
     }
+
+    @Override
+    public Ticket bookRoute(RouteTicket r) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
